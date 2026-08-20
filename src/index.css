@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg-about: #F6E4CF;
+  --ink: #321C04;
+  --accent: #D9C4AA;
+  --cream: #FFF9F2;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.instrument-serif {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #1c1917 0%, #44403c 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  background-color: var(--bg-about);
+  color: var(--ink);
+}
+
