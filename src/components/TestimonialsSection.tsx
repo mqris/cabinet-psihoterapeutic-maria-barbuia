@@ -4,14 +4,10 @@
  */
 
 import { useState } from "react";
-import { Quote, Sparkles, Star, Calendar, MessageSquareHeart, CheckCircle2, Heart, ShieldCheck } from "lucide-react";
+import { Quote, Star, Heart, ShieldCheck } from "lucide-react";
 import { TESTIMONIALS } from "../data/cabinetData.ts";
 
-interface TestimonialsSectionProps {
-  onOpenBooking: (type: "programare" | "cunoastere") => void;
-}
-
-export function TestimonialsSection({ onOpenBooking }: TestimonialsSectionProps) {
+export function TestimonialsSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const filteredTestimonials = selectedCategory === "all"
@@ -19,21 +15,24 @@ export function TestimonialsSection({ onOpenBooking }: TestimonialsSectionProps)
     : TESTIMONIALS.filter((t) => t.category === selectedCategory);
 
   return (
-    <section id="marturii-clienti" className="py-20 md:py-32 bg-[#FFF9F2] relative z-10 border-t border-[#321C04]/5">
+    <section id="marturii" className="py-20 md:py-32 bg-[#FFF9F2] relative z-10 border-t border-[#321C04]/5">
+      {/* Anchor alias */}
+      <div id="marturii-clienti" className="absolute -top-20 left-0 w-0 h-0 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14 space-y-4">
+        {/* Section Header with single-word badge */}
+        <div className="max-w-3xl mx-auto text-center mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6E4CF] text-[#321C04] text-xs font-semibold uppercase tracking-widest">
             <Heart size={14} className="text-rose-700 fill-rose-700" />
-            <span>Povești Reale de Schimbare & Vindecare</span>
+            <span>Mărturii</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#321C04] tracking-tight leading-tight">
-            Feedback & Experiențe din{" "}
-            <em className="instrument-serif not-italic">Sanctuarul Nostru</em>
+            Povești reale de{" "}
+            <em className="instrument-serif not-italic">schimbare & vindecare</em>
           </h2>
           <p className="text-base text-[#321C04]/80 leading-relaxed max-w-2xl mx-auto">
-            Fiecare om care pășește în cabinet poartă o poveste unică. Iată trei dintre experiențele definitorii în care știința cognitivă și căldura umană au readus lumina și pacea.
+            Fiecare om care pășește în cabinet poartă o poveste unică. Iată trei dintre experiențele în care știința cognitivă și căldura umană au readus pacea.
           </p>
         </div>
 
@@ -59,7 +58,7 @@ export function TestimonialsSection({ onOpenBooking }: TestimonialsSectionProps)
                 : "bg-[#F6E4CF]/60 text-[#321C04] hover:bg-[#F6E4CF]"
             }`}
           >
-            🧠 Gestionare ADHD la Adult
+            🧠 Gestionare ADHD
           </button>
           <button
             type="button"
@@ -81,7 +80,7 @@ export function TestimonialsSection({ onOpenBooking }: TestimonialsSectionProps)
                 : "bg-[#F6E4CF]/60 text-[#321C04] hover:bg-[#F6E4CF]"
             }`}
           >
-            🕊️ Traume Vechi & Pace la Maturitate
+            🕊️ Traume & Reconciliere
           </button>
         </div>
 
@@ -147,45 +146,10 @@ export function TestimonialsSection({ onOpenBooking }: TestimonialsSectionProps)
           ))}
         </div>
 
-        {/* Big Reassurance & CTA Box */}
-        <div className="mt-16 bg-[#321C04] rounded-3xl p-8 sm:p-12 text-[#FFF9F2] text-center space-y-6 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#D9C4AA]/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="max-w-2xl mx-auto space-y-3 relative z-10">
-            <h3 className="text-2xl sm:text-3xl font-normal text-[#FFF9F2]">
-              Meriți să simți că povara ta este împărtășită și înțeleasă.
-            </h3>
-            <p className="text-sm sm:text-base text-[#FFF9F2]/80 leading-relaxed font-normal">
-              Fie că te lupți cu ADHD, gânduri anxioase recurente sau răni vechi nespuse, primul pas începe cu o simplă conversație într-un spațiu cald și sigur.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 pt-2">
-            <button
-              type="button"
-              onClick={() => onOpenBooking("programare")}
-              className="w-full sm:w-auto bg-[#FFF9F2] hover:bg-[#F6E4CF] text-[#321C04] px-8 py-4 rounded-2xl text-base font-bold tracking-wide shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 cursor-pointer"
-              id="testimonials-btn-programare"
-            >
-              <Calendar size={18} />
-              <span>Programează o sesiune</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onOpenBooking("cunoastere")}
-              className="w-full sm:w-auto bg-[#D9C4AA] hover:bg-[#CEBA9E] text-[#321C04] px-7 py-4 rounded-2xl text-base font-semibold tracking-wide transition-all flex items-center justify-center gap-3 cursor-pointer"
-              id="testimonials-btn-cunoastere"
-            >
-              <MessageSquareHeart size={18} />
-              <span>Hai să ne cunoaștem (Intro)</span>
-            </button>
-          </div>
-
-          <div className="pt-2 text-xs text-[#FFF9F2]/60 flex items-center justify-center gap-2">
-            <ShieldCheck size={14} className="text-emerald-400" />
-            <span>Toate sesiunile sunt strict confidențiale conform codului etic CPR</span>
-          </div>
+        {/* Ethical Confidentiality Footnote */}
+        <div className="mt-12 text-center text-xs text-[#321C04]/70 flex items-center justify-center gap-2">
+          <ShieldCheck size={15} className="text-emerald-700" />
+          <span>Toate testimonialele respectă consimțământul informat și confidențialitatea conform codului deontologic CPR.</span>
         </div>
 
       </div>

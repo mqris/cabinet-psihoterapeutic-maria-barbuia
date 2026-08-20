@@ -44,7 +44,7 @@ export const ACCREDITATION_STEPS: AccreditationStep[] = [
     step: 3,
     title: "Doctorat (Ph.D.) în Psihologie & Științe Cognitive",
     institution: "Universitatea Babeș-Bolyai (UBB)",
-    description: "Cercetare doctorală aprofundată ce a culminat cu un breakthrough științific recunoscut în domeniu, aducând perspective inovatoare asupra flexibilității cognitive și autoreglării emoționale.",
+    description: "Cercetare doctorală aprofundată ce a culminat cu o descoperire științifică majoră recunoscută în domeniu, aducând perspective inovatoare asupra flexibilității cognitive și autoreglării emoționale.",
     status: 'completat'
   },
   {
@@ -230,6 +230,6 @@ export const CABINET_LOCATION = {
     "Opțiune pentru sesiuni Online securizate (Zoom / Google Meet HD)"
   ],
   phone: "+40 740 123 456",
-  email: "contact@mariabarbuia.ro",
+  email: "barbuiamaria@gmail.com",
   hours: "Luni – Vineri: 09:00 – 20:00 | Sâmbătă: 10:00 – 15:00"
 };

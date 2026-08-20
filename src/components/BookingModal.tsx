@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect, FormEvent } from "react";
-import { X, Calendar, MessageSquareHeart, Clock, MapPin, CheckCircle2, ShieldCheck, HeartHandshake, Phone, Mail, User } from "lucide-react";
+import { X, Calendar, MessageSquareHeart, ShieldCheck, HeartHandshake, Phone, Mail, User, Send, CheckCircle2 } from "lucide-react";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -25,7 +25,6 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
     preferredDate: "",
     preferredTime: "dimineata",
     reason: "",
-    hasPriorTherapy: "nu",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,6 +39,48 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
+
+    const subject = encodeURIComponent(
+      activeTab === "programare"
+        ? `[Programare Sesiune] ${formData.name || "Client nou"} - Cabinet Dr. Maria Barbuia`
+        : `[Hai să ne cunoaștem - 15 min] ${formData.name || "Client nou"}`
+    );
+
+    const bodyText = encodeURIComponent(
+      `Buna ziua Dr. Maria Barbuia,\n\nDoresc sa transmit urmatoarea solicitare de programare:\n\n` +
+      `Tip solicitare: ${activeTab === "programare" ? "Programare Sesiune Terapeutica" : "Discutie introductiva (15 min gratuit)"}\n` +
+      `Nume si Prenume: ${formData.name}\n` +
+      `Telefon: ${formData.phone}\n` +
+      `Email: ${formData.email}\n` +
+      (activeTab === "programare" ? `Format sesiune: ${sessionFormat === "cabinet" ? "La Cabinet (Cluj-Napoca)" : "Online (Zoom / Meet)"}\n` : "") +
+      (activeTab === "programare" ? `Durata sesiune: ${sessionDuration === "1h" ? "1 Ora (300 LEI)" : "2 Ore (500 LEI)"}\n` : "") +
+      `Interval orar preferat: ${formData.preferredTime}\n` +
+      (formData.reason ? `Mesaj / Provocare: ${formData.reason}\n` : "") +
+      `\nVa multumesc!`
+    );
+
+    // Trigger mailto directly to barbuiamaria@gmail.com
+    const mailtoUrl = `mailto:barbuiamaria@gmail.com?subject=${subject}&body=${bodyText}`;
+    try {
+      window.location.href = mailtoUrl;
+    } catch {
+      // fallback
+    }
+  };
+
+  const openDirectGmail = () => {
+    const subject = encodeURIComponent(
+      activeTab === "programare"
+        ? `[Programare Sesiune] ${formData.name || "Client nou"}`
+        : `[Hai să ne cunoaștem] ${formData.name || "Client nou"}`
+    );
+    const body = encodeURIComponent(
+      `Buna ziua Dr. Maria Barbuia,\n\nNume: ${formData.name}\nTelefon: ${formData.phone}\nEmail: ${formData.email}\nInterval: ${formData.preferredTime}\nMesaj: ${formData.reason}`
+    );
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=barbuiamaria@gmail.com&su=${subject}&body=${body}`,
+      "_blank"
+    );
   };
 
   return (
@@ -68,7 +109,7 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
               <h2 className="text-xl sm:text-2xl font-bold text-[#321C04]">
                 Cabinet Dr. Maria Barbuia
               </h2>
-              <p className="text-xs text-[#321C04]/70">Psihoterapeut & Doctor în Psihologie</p>
+              <p className="text-xs text-[#321C04]/70">barbuiamaria@gmail.com • Psihoterapie & Științe Cognitive</p>
             </div>
           </div>
 
@@ -102,7 +143,7 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
               }`}
             >
               <MessageSquareHeart size={15} />
-              <span>Hai să ne cunoaștem (Intro)</span>
+              <span>Hai să ne cunoaștem</span>
             </button>
           </div>
         </div>
@@ -110,36 +151,46 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
         {/* Modal Body */}
         <div className="p-6 sm:p-8">
           {isSubmitted ? (
-            <div className="text-center py-8 space-y-5 animate-fade-in">
+            <div className="text-center py-6 space-y-5 animate-fade-in">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 size={36} />
               </div>
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold text-[#321C04]">
-                  Solicitarea ta a fost primită cu drag!
+                  Solicitarea ta a fost transmisă!
                 </h3>
-                <p className="text-sm text-[#321C04]/80 max-w-md mx-auto leading-relaxed">
-                  Îți mulțumesc pentru încredere, {formData.name || "dragă vizitator"}. Voi reveni personal către tine prin telefon sau email în cel mult 24 de ore pentru a confirma detaliile sesiunii.
+                <p className="text-sm text-[#321C04]/85 max-w-md mx-auto leading-relaxed">
+                  Mesajul ajunge direct la <strong>barbuiamaria@gmail.com</strong>. Îți mulțumesc pentru încredere, {formData.name || "dragă vizitator"}. Voi reveni personal către tine în cel mult 24 de ore.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F6E4CF]/60 text-xs text-[#321C04]/90 max-w-md mx-auto text-left space-y-1.5 border border-[#321C04]/10">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={openDirectGmail}
+                  className="bg-[#D9C4AA] hover:bg-[#CEBA9E] text-[#321C04] px-5 py-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <Mail size={15} />
+                  <span>Deschide în Gmail (barbuiamaria@gmail.com)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="bg-[#321C04] text-[#FFF9F2] px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-[#1F1003] transition-colors cursor-pointer"
+                >
+                  Închide fereastra
+                </button>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-[#F6E4CF]/60 text-xs text-[#321C04]/90 max-w-md mx-auto text-left space-y-1.5 border border-[#321C04]/10 mt-4">
                 <div className="font-bold flex items-center gap-1.5">
                   <ShieldCheck size={15} className="text-emerald-700" />
-                  <span>Confidențialitate garantată</span>
+                  <span>Confidențialitate garantată CPR</span>
                 </div>
                 <p>
-                  Toate informațiile transmise sunt protejate prin secret profesional conform normelor Colegiului Psihologilor din România.
+                  Toate datele tale sunt tratate strict conform secretului profesional al Colegiului Psihologilor din România.
                 </p>
               </div>
-
-              <button
-                type="button"
-                onClick={onClose}
-                className="bg-[#321C04] text-[#FFF9F2] px-8 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-[#1F1003] transition-colors cursor-pointer mt-4"
-              >
-                Închide fereastra
-              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -150,7 +201,7 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
                     <span>Discuție preliminară de 15 minute (Fără costuri)</span>
                   </div>
                   <p className="leading-relaxed">
-                    Dacă ai întrebări despre abordare, despre ADHD sau despre cum te pot ajuta cel mai bine, stabilim o scurtă convorbire video sau telefonică pentru a ne cunoaște.
+                    Dacă ai întrebări despre abordare, despre ADHD sau despre cum te pot sprijini cel mai bine, stabilim o scurtă convorbire video sau telefonică pentru a ne cunoaște.
                   </p>
                 </div>
               )}
@@ -316,16 +367,16 @@ export function BookingModal({ isOpen, initialType = "programare", onClose }: Bo
                   type="submit"
                   className="w-full bg-[#321C04] hover:bg-[#1F1003] text-[#FFF9F2] py-4 rounded-2xl text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Calendar size={18} />
+                  <Send size={16} />
                   <span>
                     {activeTab === "programare"
-                      ? "Trimite cererea de programare"
+                      ? "Trimite cererea de programare către barbuiamaria@gmail.com"
                       : "Trimite solicitarea pentru discuția introductivă"}
                   </span>
                 </button>
                 <p className="text-center text-[11px] text-[#321C04]/60 mt-3 flex items-center justify-center gap-1.5">
                   <ShieldCheck size={13} className="text-emerald-700" />
-                  <span>Răspuns garantat în maximum 24 de ore lucrătoare</span>
+                  <span>Programările ajung direct la Dr. Maria Barbuia (barbuiamaria@gmail.com)</span>
                 </p>
               </div>
             </form>

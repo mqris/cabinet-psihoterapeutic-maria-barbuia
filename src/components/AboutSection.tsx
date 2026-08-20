@@ -4,38 +4,37 @@
  */
 
 import { useState } from "react";
-import { GraduationCap, Award, Compass, HeartHandshake, CheckCircle2, BookOpen, UserCheck, ShieldCheck, Sparkles, HelpCircle } from "lucide-react";
-import { DOCTOR_PROFILE, ACCREDITATION_STEPS } from "../data/cabinetData.ts";
+import { GraduationCap, Award, HeartHandshake, CheckCircle2, UserCheck, ShieldCheck, Sparkles } from "lucide-react";
+import { ACCREDITATION_STEPS } from "../data/cabinetData.ts";
 
-interface AboutSectionProps {
-  onOpenBooking: (type: "programare" | "cunoastere") => void;
-}
-
-export function AboutSection({ onOpenBooking }: AboutSectionProps) {
-  const [activeTab, setActiveTab] = useState<"biografie" | "de-ce-psihoterapie" | "etape-cabinet">("biografie");
+export function AboutSection() {
+  const [activeTab, setActiveTab] = useState<"biografie" | "acreditare">("biografie");
 
   return (
-    <section id="despre-mine" className="py-20 md:py-32 bg-[#FFF9F2] relative z-10 border-t border-[#321C04]/5">
+    <section id="despre" className="py-20 md:py-32 bg-[#FFF9F2] relative z-10 border-t border-[#321C04]/5">
+      {/* Anchor alias for backwards compatibility */}
+      <div id="despre-mine" className="absolute -top-20 left-0 w-0 h-0 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with cognitive visual hierarchy */}
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        {/* Section Header with single-word badge */}
+        <div className="max-w-3xl mx-auto text-center mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6E4CF] text-[#321C04] text-xs font-semibold uppercase tracking-widest">
             <UserCheck size={14} />
-            <span>Despre Psihologul Tău</span>
+            <span>Despre</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#321C04] tracking-tight leading-tight">
-            Cine sunt, cum lucrez și{" "}
-            <em className="instrument-serif not-italic">de ce sunt aici pentru tine</em>
+            Formare, experiență și{" "}
+            <em className="instrument-serif not-italic">rigoare academică</em>
           </h2>
           <p className="text-base text-[#321C04]/80 leading-relaxed max-w-2xl mx-auto">
-            Combin rigoarea academică de vârf cu o prezență profund umană, empatică și comunicativă, pentru ca tu să te simți în siguranță deplină.
+            Doctor în Psihologie (UBB) și psihoterapeut acreditat, îmbinând științele cognitive cu o prezență profund umană și empatică.
           </p>
         </div>
 
         {/* Tab Selector */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#F6E4CF]/60 border border-[#321C04]/10 max-w-full overflow-x-auto">
+          <div className="inline-flex p-1.5 rounded-2xl bg-[#F6E4CF]/60 border border-[#321C04]/10 max-w-full">
             <button
               type="button"
               onClick={() => setActiveTab("biografie")}
@@ -49,25 +48,14 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
             </button>
             <button
               type="button"
-              onClick={() => setActiveTab("de-ce-psihoterapie")}
+              onClick={() => setActiveTab("acreditare")}
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === "de-ce-psihoterapie"
+                activeTab === "acreditare"
                   ? "bg-[#321C04] text-[#FFF9F2] shadow-sm"
                   : "text-[#321C04]/70 hover:text-[#321C04] hover:bg-black/5"
               }`}
             >
-              De Ce Am Ales Psihoterapia
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("etape-cabinet")}
-              className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === "etape-cabinet"
-                  ? "bg-[#321C04] text-[#FFF9F2] shadow-sm"
-                  : "text-[#321C04]/70 hover:text-[#321C04] hover:bg-black/5"
-              }`}
-            >
-              Etapele Acreditării Cabinetului (CPR)
+              Acreditare CPR (6 Etape)
             </button>
           </div>
         </div>
@@ -75,7 +63,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
         {/* Tab 1: Biografie & Parcurs Academic */}
         {activeTab === "biografie" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start animate-fade-in-down">
-            {/* Left Col: Overview & Philosophy */}
+            {/* Left Col: Overview & Experience */}
             <div className="lg:col-span-7 space-y-6">
               <div className="bg-[#F6E4CF]/50 rounded-3xl p-8 border border-[#321C04]/10 space-y-4">
                 <div className="flex items-center gap-3 text-sm font-semibold text-[#321C04]">
@@ -83,10 +71,10 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                   <span>Formare Universitară de Elită la UBB Cluj-Napoca</span>
                 </div>
                 <p className="text-base text-[#321C04]/90 leading-relaxed">
-                  Am <strong>35 de ani</strong> și am absolvit cursurile <strong>Facultății de Psihologie din cadrul Universității Babeș-Bolyai (UBB)</strong>, specializarea <strong>Științe Cognitive</strong>. Parcursul meu a continuat firesc cu un <strong>Masterat în Cercetare Avansată</strong> și un <strong>Doctorat (Ph.D.)</strong> în psihologie, în cadrul căruia am obținut un breakthrough științific semnificativ recunoscut în domeniu.
+                  Am <strong>35 de ani</strong> și am absolvit cursurile <strong>Facultății de Psihologie din cadrul Universității Babeș-Bolyai (UBB)</strong>, specializarea <strong>Științe Cognitive</strong>. Parcursul meu a continuat firesc cu un <strong>Masterat în Cercetare Avansată</strong> și un <strong>Doctorat (Ph.D.)</strong> în psihologie, în cadrul căruia am obținut o <strong>descoperire științifică majoră</strong> recunoscută în domeniu.
                 </p>
                 <p className="text-base text-[#321C04]/90 leading-relaxed">
-                  Încă din primii ani de facultate, am refuzat să rămân doar la teorie. Am desfășurat <strong>numeroase internship-uri în centre de cercetare de top</strong> și în cabinete psihoterapeutice prestigioase, acumulând echivalentul a <strong>doi ani de experiență clinică practică directă</strong> în momentul în care am finalizat studiile universitare.
+                  Încă din anii de facultate, am desfășurat numeroase internship-uri în centre de cercetare de top și în cabinete psihoterapeutice prestigioase, acumulând echivalentul a <strong>doi ani de experiență clinică practică directă</strong> în momentul finalizării studiilor universitare.
                 </p>
               </div>
 
@@ -97,9 +85,9 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                     <Award size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#321C04] text-base">Breakthrough Științific</h3>
+                    <h3 className="font-bold text-[#321C04] text-base">Descoperire Științifică</h3>
                     <p className="text-xs text-[#321C04]/70 mt-1 leading-relaxed">
-                      Cercetare doctorală validată internațional pe autoreglare cognitiv-emoțională și neuroplasticitate.
+                      Cercetare doctorală validată pe autoreglare cognitiv-emoțională și flexibilitate mentală.
                     </p>
                   </div>
                 </div>
@@ -111,7 +99,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                   <div>
                     <h3 className="font-bold text-[#321C04] text-base">250+ Oameni Ghidați</h3>
                     <p className="text-xs text-[#321C04]/70 mt-1 leading-relaxed">
-                      Clienți care și-au redobândit autonomia, claritatea și pacea prin colaborare terapeutică.
+                      Clienți care și-au redobândit autonomia, claritatea și pacea prin ghidaj terapeutic.
                     </p>
                   </div>
                 </div>
@@ -133,7 +121,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
             <div className="lg:col-span-5 space-y-4">
               <div className="bg-white rounded-3xl p-7 border border-[#321C04]/10 shadow-sm space-y-6">
                 <h3 className="text-lg font-bold text-[#321C04] border-b border-[#321C04]/10 pb-3">
-                  Cronologia Excelenței
+                  Cronologia Formării
                 </h3>
 
                 <div className="space-y-4">
@@ -163,7 +151,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                     </div>
                     <div>
                       <div className="font-bold text-sm text-[#321C04]">Doctorat în Psihologie</div>
-                      <div className="text-xs text-[#321C04]/70 mt-0.5">Breakthrough științific în mecanisme de adaptare cognitivă.</div>
+                      <div className="text-xs text-[#321C04]/70 mt-0.5">Descoperire științifică majoră în adaptare cognitivă.</div>
                     </div>
                   </div>
 
@@ -178,68 +166,20 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#321C04]/10 flex flex-col gap-3">
-                  <button
-                    type="button"
-                    onClick={() => onOpenBooking("cunoastere")}
-                    className="w-full bg-[#D9C4AA] hover:bg-[#CEBA9E] text-[#321C04] py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer text-center"
-                  >
-                    Hai să ne cunoaștem (15 min gratuit)
-                  </button>
+                <div className="p-4 rounded-2xl bg-[#F6E4CF]/40 border border-[#321C04]/10 text-xs text-[#321C04]/80 space-y-1">
+                  <div className="font-bold text-[#321C04] flex items-center gap-1.5">
+                    <ShieldCheck size={14} className="text-emerald-700" />
+                    <span>Practică Clinică Autorizată</span>
+                  </div>
+                  <p>Cabinetul funcționează cu aviz oficial și conform normelor deontologice CPR.</p>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Tab 2: De Ce Am Ales Psihoterapia */}
-        {activeTab === "de-ce-psihoterapie" && (
-          <div id="de-ce-psihoterapie" className="max-w-4xl mx-auto space-y-8 animate-fade-in-down">
-            <div className="bg-[#F6E4CF] rounded-3xl p-8 sm:p-12 border border-[#321C04]/10 space-y-6">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#321C04]/80">
-                <Compass size={16} />
-                <span>Misiune & Vocație Personală</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-normal text-[#321C04] leading-snug">
-                „Am ales psihoterapia pentru că îmi doresc să ajut pe orice latură îmi stă în putință.”
-              </h3>
-              <div className="space-y-4 text-base sm:text-lg text-[#321C04]/90 leading-relaxed font-normal">
-                <p>
-                  În laboratorul de cercetare am descoperit mecanismele fine prin care gândurile noastre modelează realitatea, emoțiile și comportamentul. Totuși, cunoașterea științifică capătă cu adevărat valoare doar atunci când este pusă în slujba sufletului uman.
-                </p>
-                <p>
-                  Când nu mă aflu în fața datelor de cercetare, îmi dedic perioadele libere pentru a oferi <strong>consiliere dedicată și suport psihoterapeutic pentru cazuri excepționale</strong> — oameni care se confruntă cu crize profunde de identitate, dureri ascunse sau diagnostice care par insurmontabile.
-                </p>
-                <p>
-                  Îmi doresc ca fiecare client să simtă că în cabinetul meu nu este doar un număr de fișă, ci o persoană respectată în totalitatea sa. Sunt aici să fiu acel pilon stabil atunci când simți că totul în jur se clatină.
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-[#321C04]/15 flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-[#321C04] text-white flex items-center justify-center font-serif font-bold text-lg">
-                    MB
-                  </div>
-                  <div>
-                    <div className="font-bold text-[#321C04] text-sm">Dr. Maria Barbuia</div>
-                    <div className="text-xs text-[#321C04]/70">Psihoterapeut & Doctor în Psihologie</div>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => onOpenBooking("programare")}
-                  className="bg-[#321C04] hover:bg-[#1F1003] text-[#FFF9F2] px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
-                >
-                  Programează o sesiune acum
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Tab 3: Etapele Acreditării Cabinetului (CPR) */}
-        {activeTab === "etape-cabinet" && (
+        {/* Tab 2: Etapele Acreditării Cabinetului (CPR) */}
+        {activeTab === "acreditare" && (
           <div className="space-y-8 animate-fade-in-down">
             <div className="max-w-3xl mx-auto text-center space-y-3 mb-8">
               <h3 className="text-2xl font-bold text-[#321C04]">

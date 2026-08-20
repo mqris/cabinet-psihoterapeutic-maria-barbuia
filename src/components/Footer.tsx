@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ShieldCheck, Heart, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { ShieldCheck, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { CABINET_LOCATION } from "../data/cabinetData.ts";
 
 export function Footer() {
@@ -43,70 +43,70 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Navigation Links */}
+          {/* Quick Navigation Links - Single Words */}
           <div className="lg:col-span-3 space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-[#D9C4AA]">
-              Secțiuni Principale
+              Secțiuni
             </div>
             <ul className="space-y-2 text-xs sm:text-sm text-white/80 font-medium">
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("despre-mine")}
+                  onClick={() => scrollTo("despre")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Despre Mine & Formare UBB
+                  Despre
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("de-ce-psihoterapie")}
+                  onClick={() => scrollTo("vocatie")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  De Ce Am Ales Psihoterapia
+                  Vocație
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("tineret-leadership")}
+                  onClick={() => scrollTo("tineret")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Experiență Liceu & Tineret (EYP / CTR)
+                  Tineret
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("locatie-cabinet")}
+                  onClick={() => scrollTo("sanctuar")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Cabinetul & Atmosfera
+                  Sanctuar
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("marturii-clienti")}
+                  onClick={() => scrollTo("marturii")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Mărturii Clienți (ADHD / Anxietate / Traume)
+                  Mărturii
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollTo("tarife-sesiuni")}
+                  onClick={() => scrollTo("tarife")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Tarife & Reducere Fidelitate (-40%)
+                  Tarife
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Contact & Hours */}
+          {/* Contact & Direct Email */}
           <div className="lg:col-span-4 space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-[#D9C4AA]">
               Contact Direct
@@ -122,7 +122,9 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={16} className="text-[#D9C4AA] shrink-0" />
-                <span>{CABINET_LOCATION.email}</span>
+                <a href="mailto:barbuiamaria@gmail.com" className="text-[#D9C4AA] hover:underline font-semibold">
+                  barbuiamaria@gmail.com
+                </a>
               </div>
               <div className="pt-2 text-xs text-white/60">
                 {CABINET_LOCATION.hours}

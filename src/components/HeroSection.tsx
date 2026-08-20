@@ -35,59 +35,34 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
               <span>Cabinet Autorizat & Psihoterapie Bazată pe Științe Cognitive</span>
             </div>
 
-            {/* Main Headline with Instrument Serif accent */}
+            {/* Main Catchy Headline (3 words) with Instrument Serif accent */}
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-normal text-[#321C04] leading-[1.12] tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-[#321C04] leading-[1.1] tracking-tight"
               id="hero-main-title"
             >
-              Spațiul tău de liniște, înțelegere și claritate{" "}
+              Liniște. Claritate.{" "}
               <em className="instrument-serif not-italic font-normal text-[#321C04] block sm:inline">
-                fără grabă sau vinovăție.
+                Vindecare.
               </em>
             </h1>
 
             {/* Reassuring Subtitle */}
-            <p className="text-base sm:text-lg text-[#321C04]/80 leading-relaxed max-w-2xl font-normal">
+            <p className="text-base sm:text-lg text-[#321C04]/85 leading-relaxed max-w-2xl font-normal">
               Sunt <strong>Dr. Maria Barbuia</strong>, doctor în psihologie (UBB) și psihoterapeut. Te însoțesc cu deschidere, căldură autentică și rigoare științifică pentru a depăși anxietatea, ADHD-ul, traumele vechi sau perioadele copleșitoare de viață.
             </p>
 
-            {/* Prominent Dual Action Buttons - Big & Visible */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              {/* Buton mare și tare: Programează o sesiune */}
-              <button
-                type="button"
-                onClick={() => onOpenBooking("programare")}
-                className="bg-[#321C04] hover:bg-[#1F1003] text-[#FFF9F2] px-8 py-4 rounded-2xl text-base font-semibold tracking-wide shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 cursor-pointer group"
-                id="hero-btn-programare-mare"
-              >
-                <Calendar size={20} className="transition-transform group-hover:scale-110" />
-                <span>Programează o sesiune</span>
-              </button>
-
-              {/* Buton: Hai să ne cunoaștem */}
-              <button
-                type="button"
-                onClick={() => onOpenBooking("cunoastere")}
-                className="bg-[#D9C4AA] hover:bg-[#CEBA9E] text-[#321C04] px-7 py-4 rounded-2xl text-base font-semibold tracking-wide shadow-sm hover:shadow transition-all flex items-center justify-center gap-3 cursor-pointer border border-[#321C04]/15"
-                id="hero-btn-hai-sa-ne-cunoastem"
-              >
-                <MessageSquareHeart size={20} className="text-[#321C04]" />
-                <span>Hai să ne cunoaștem</span>
-              </button>
-            </div>
-
-            {/* Reassurance Micro-Copy */}
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#321C04]/75 pt-2">
+            {/* Reassurance Trust Badges */}
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs sm:text-sm text-[#321C04]/80 pt-2 font-medium">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck size={15} className="text-emerald-700" />
+                <ShieldCheck size={16} className="text-emerald-700" />
                 Confidențialitate absolută
               </span>
               <span className="flex items-center gap-1.5">
-                <HeartHandshake size={15} className="text-[#321C04]" />
+                <HeartHandshake size={16} className="text-[#321C04]" />
                 Fără prejudecăți sau etichete
               </span>
               <span className="flex items-center gap-1.5">
-                <Sparkles size={15} className="text-[#321C04]" />
+                <Sparkles size={16} className="text-[#321C04]" />
                 Format Fizic & Online
               </span>
             </div>
@@ -127,14 +102,14 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
               <div className="flex items-center justify-between text-xs font-semibold text-[#321C04] pt-2 border-t border-[#321C04]/10">
                 <button
                   type="button"
-                  onClick={() => scrollTo("despre-mine")}
+                  onClick={() => scrollTo("despre")}
                   className="hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   Vezi formarea mea <ArrowDown size={12} />
                 </button>
                 <button
                   type="button"
-                  onClick={() => scrollTo("marturii-clienti")}
+                  onClick={() => scrollTo("marturii")}
                   className="hover:underline text-[#321C04]/80 cursor-pointer"
                 >
                   3 Povești de Schimbare →
@@ -152,7 +127,7 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
       <div className="w-full max-w-7xl mx-auto px-4 pt-8 flex items-center justify-center">
         <button
           type="button"
-          onClick={() => scrollTo("despre-mine")}
+          onClick={() => scrollTo("despre")}
           className="text-xs uppercase tracking-widest font-semibold text-[#321C04]/60 hover:text-[#321C04] flex items-center gap-2 transition-colors cursor-pointer"
         >
           <span>Descoperă parcursul & filosofia cabinetului</span>
